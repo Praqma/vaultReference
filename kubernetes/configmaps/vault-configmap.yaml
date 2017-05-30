@@ -1,0 +1,15 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: vault-config
+data:
+  vault.conf: |-
+    backend "file" {
+      path = "/vault/file/vaultsecrets"
+    }
+    listener "tcp" {
+      address = "0.0.0.0:8200"
+      #tls_cert_file = "/root/server.crt"
+      #tls_key_file = "/root/server.key"
+      tls_disable = 1
+    }

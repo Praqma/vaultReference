@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vault-ui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vault-ui
+    spec:
+      containers:
+      - name: vault-ui
+        image: hoeghh/vault-ui:2.0.2
+        ports:
+        - containerPort: 8000
+          name: vault-ui
+        env:
+        - name: VAULT_URL_DEFAULT
+          value: "http://vault.default.svc.cluster.local:8200"
+        - name: VAULT_AUTH_DEFAULT
+          value: "GITHUB"

@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vault
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vault
+    spec:
+      containers:
+      - name: vault
+        image: hoeghh/vault:0.7.0
+        command: [ "vault", "server", "-config", "/vault/config/vault.conf" ]
+        ports:
+        - containerPort: 8200
+          name: vault
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: vault-storage
+          mountPath: /vault/file/
+        - name: vault-config
+          mountPath: /vault/config/
+      volumes:
+      - name: vault-storage
+        persistentVolumeClaim:
+          claimName: vault-storage-pv-claim
+      - name: vault-config
+        configMap:
+          name: vault-config
+

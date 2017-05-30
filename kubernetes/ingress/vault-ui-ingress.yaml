@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: vault-ui
+spec:
+  rules:
+  - host: vault-ui.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: vault-ui
+          servicePort: 8000
+
