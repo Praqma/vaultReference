@@ -1,7 +1,9 @@
+---
+maintainer: hoeghh
+---
+
 # Vault
----
-maintainer: sharor, hoeghh
----
+
 ## This repository
 In this repository you will find the code used to run and deploy HashiCorp Vault. It will evolve to include both runtimes and tools used to host / maintain HashiCorp Vault.
 
